@@ -89,14 +89,7 @@ namespace Matarillo.IO
                     {
                         return Slice(_lengthRead, 0);
                     }
-                    try
-                    {
-                        lengthPrepared += await FillBufferAsync();
-                    }
-                    catch (ObjectDisposedException)
-                    {
-                        return Slice(_lengthRead, 0);
-                    }
+                    lengthPrepared += await FillBufferAsync();
                 }
                 int count;
                 if (FindSeparator(separator, bufferIndex, bufferPos, out count))
@@ -127,10 +120,17 @@ namespace Matarillo.IO
                 _buffers.Add(lastBuffer);
                 _tailPos = 0;
             }
-            var length = await _stream.ReadAsync(lastBuffer, _tailPos, lastBuffer.Length - _tailPos);
-            _lengthRead += length;
-            _tailPos += length;
-            return length;
+            try
+            {
+                var length = await _stream.ReadAsync(lastBuffer, _tailPos, lastBuffer.Length - _tailPos);
+                _lengthRead += length;
+                _tailPos += length;
+                return length;
+            }
+            catch
+            {
+                return 0;
+            }
         }
 
         private bool FindSeparator(byte[] separator, int bufferIndex, int bufferPos, out int count)
@@ -237,14 +237,7 @@ namespace Matarillo.IO
                 {
                     return Slice(_lengthRead, 0);
                 }
-                try
-                {
-                    await FillBufferAsync();
-                }
-                catch (ObjectDisposedException)
-                {
-                    return Slice(_lengthRead, 0);
-                }
+                await FillBufferAsync();
             }
             return Slice(count, 0);
         }
