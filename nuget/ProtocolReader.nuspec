@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>ProtocolReader</id>
-        <version>1.0.0</version>
+        <version>1.0.2</version>
         <title>ProtocolReader</title>
         <authors>Kentaro INOMATA</authors>
         <owners>Kentaro INOMATA</owners>
@@ -15,9 +15,9 @@
         <tags>Protocol Reader Stream Bytes</tags>
     </metadata>
     <files>
-        <file src="content\netstandard1.1\Matarillo.IO.deps.json" target="content\netstandard1.1\Matarillo.IO.deps.json" />
-        <file src="content\netstandard1.1\Matarillo.IO.dll" target="content\netstandard1.1\Matarillo.IO.dll" />
-        <file src="content\netstandard1.1\Matarillo.IO.pdb" target="content\netstandard1.1\Matarillo.IO.pdb" />
-        <file src="content\netstandard1.1\Matarillo.IO.xml" target="content\netstandard1.1\Matarillo.IO.xml" />
+        <file src="..\ProtocolReader\bin\Release\netstandard1.1\Matarillo.IO.deps.json" target="lib\netstandard1.1\Matarillo.IO.deps.json" />
+        <file src="..\ProtocolReader\bin\Release\netstandard1.1\Matarillo.IO.dll" target="lib\netstandard1.1\Matarillo.IO.dll" />
+        <file src="..\ProtocolReader\bin\Release\netstandard1.1\Matarillo.IO.pdb" target="lib\netstandard1.1\Matarillo.IO.pdb" />
+        <file src="..\ProtocolReader\bin\Release\netstandard1.1\Matarillo.IO.xml" target="lib\netstandard1.1\Matarillo.IO.xml" />
     </files>
 </package>

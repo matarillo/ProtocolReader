@@ -59,6 +59,7 @@ namespace Matarillo.IO
             _stream = input ?? throw new ArgumentNullException(nameof(input));
             _bufferSize = (bufferSize > 0) ? bufferSize : throw new ArgumentOutOfRangeException(nameof(bufferSize));
             _leaveOpen = leaveOpen;
+            _buffers = new List<byte[]>();
         }
 
         /// <summary>
@@ -88,7 +89,14 @@ namespace Matarillo.IO
                     {
                         return Slice(_lengthRead, 0);
                     }
-                    lengthPrepared += await FillBufferAsync();
+                    try
+                    {
+                        lengthPrepared += await FillBufferAsync();
+                    }
+                    catch (ObjectDisposedException)
+                    {
+                        return Slice(_lengthRead, 0);
+                    }
                 }
                 int count;
                 if (FindSeparator(separator, bufferIndex, bufferPos, out count))
@@ -229,7 +237,14 @@ namespace Matarillo.IO
                 {
                     return Slice(_lengthRead, 0);
                 }
-                await FillBufferAsync();
+                try
+                {
+                    await FillBufferAsync();
+                }
+                catch (ObjectDisposedException)
+                {
+                    return Slice(_lengthRead, 0);
+                }
             }
             return Slice(count, 0);
         }
