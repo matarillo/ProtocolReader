@@ -84,6 +84,10 @@ namespace Matarillo.IO
             {
                 while (lengthPrepared < separatorLength)
                 {
+                    if (!_stream.CanRead)
+                    {
+                        return Slice(_lengthRead, 0);
+                    }
                     lengthPrepared += await FillBufferAsync();
                 }
                 int count;
@@ -221,6 +225,10 @@ namespace Matarillo.IO
             if (count < 0) throw new ArgumentOutOfRangeException(nameof(count));
             while (_lengthRead < count)
             {
+                if (!_stream.CanRead)
+                {
+                    return Slice(_lengthRead, 0);
+                }
                 await FillBufferAsync();
             }
             return Slice(count, 0);
