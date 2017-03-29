@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>ProtocolReader</id>
+        <version>1.0.0</version>
+        <title>ProtocolReader</title>
+        <authors>Kentaro INOMATA</authors>
+        <owners>Kentaro INOMATA</owners>
+        <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
+        <projectUrl>https://github.com/matarillo/ProtocolReader</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>ProtocolReader class reads bytes according to a certain protocol.</description>
+        <releaseNotes>v1.0.0: initial release.</releaseNotes>
+        <copyright>Copyright © 2017 INOMATA Kentaro</copyright>
+        <tags>Protocol Reader Stream Bytes</tags>
+    </metadata>
+    <files>
+        <file src="content\netstandard1.1\Matarillo.IO.deps.json" target="content\netstandard1.1\Matarillo.IO.deps.json" />
+        <file src="content\netstandard1.1\Matarillo.IO.dll" target="content\netstandard1.1\Matarillo.IO.dll" />
+        <file src="content\netstandard1.1\Matarillo.IO.pdb" target="content\netstandard1.1\Matarillo.IO.pdb" />
+        <file src="content\netstandard1.1\Matarillo.IO.xml" target="content\netstandard1.1\Matarillo.IO.xml" />
+    </files>
+</package>
