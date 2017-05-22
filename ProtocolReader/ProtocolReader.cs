@@ -182,10 +182,12 @@ namespace Matarillo.IO
             var newLengthRead = 0;
             foreach (var src in _buffers)
             {
+                var bufferPos = (src == _buffers[0] ? _headPos : 0);
+                var bufferLen = (src == _buffers[_buffers.Count - 1] ? _tailPos : src.Length);
                 if (copying)
                 {
-                    var srcPos = (src == _buffers[0] ? _headPos : 0);
-                    var srcLen = src.Length - srcPos;
+                    var srcPos = bufferPos;
+                    var srcLen = bufferLen - srcPos;
                     var destLen = dest.Length - destPos;
                     var copyLen = (srcLen < destLen) ? srcLen : destLen;
                     Array.Copy(src, srcPos, dest, destPos, copyLen);
@@ -194,22 +196,22 @@ namespace Matarillo.IO
                     {
                         copying = false;
                         newHeadPos = srcPos + copyLen + chopLength;
-                        if (newHeadPos < src.Length)
+                        if (newHeadPos < bufferLen)
                         {
                             newBuffers.Add(src);
-                            newLengthRead = src.Length - newHeadPos;
+                            newLengthRead = bufferLen - newHeadPos;
                         }
                         else
                         {
-                            newLengthRead = src.Length - newHeadPos;
-                            newHeadPos -= src.Length;
+                            newLengthRead = bufferLen - newHeadPos;
+                            newHeadPos -= bufferLen;
                         }
                     }
                 }
                 else
                 {
                     newBuffers.Add(src);
-                    newLengthRead += (src == _buffers[_buffers.Count - 1]) ? _tailPos : src.Length;
+                    newLengthRead += bufferLen;
                 }
             }
             _buffers = newBuffers;
