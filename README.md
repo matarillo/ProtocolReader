@@ -8,7 +8,7 @@ ProtocolReader class reads bytes according to a certain protocol.
 run the following command in [NuGet Package Manager Console](https://docs.microsoft.com/ja-jp/nuget/tools/package-manager-console).
 
 ```
-PM> Install-Package ProtocolReader
+PM> Install-Package Matarillo.IO
 ```
 
 ## Usage
