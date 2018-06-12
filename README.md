@@ -1,7 +1,7 @@
 # ProtocolReader
 ProtocolReader class reads bytes according to a certain protocol.
 
-![ProtocolReader](https://raw.githubusercontent.com/matarillo/matarillo.github.io/master/ProtocolReader/image1.png)
+![ProtocolReader](https://raw.githubusercontent.com/matarillo/ProtocolReader/master/image1.png)
 
 ## Installation
 
